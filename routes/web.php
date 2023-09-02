@@ -22,11 +22,26 @@ Route::get('/', function () {
  * API for getting all players data
  *
  */
-Route::get('/player', [PlayerController::class, 'index'])->name('player.index');
+Route::get('/players', 'PlayerController@index');
 
  /**
  * API for creating player 
  *
  */
 
-Route::get('/player/create', [PlayerController::class, 'create'])->name('player.create');
+Route::post('/player', 'PlayerController@store');
+
+ /**
+ * API for viewing a single player's data 
+ *
+ */
+
+Route::get('/players/{id}', 'PlayerController@view');
+
+ /**
+ * API for viewing a single player's data 
+ *
+ */
+ Route::delete('/players/{id}', 'PlayerController@delete');
+
+
