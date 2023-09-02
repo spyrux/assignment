@@ -9,6 +9,7 @@ class Player extends Model
 {
     use HasFactory;
 
+    public $table = 'player';
     
     /**
      * The attributes that are mass assignable.
@@ -18,8 +19,15 @@ class Player extends Model
     protected $fillable = [
         'name',
         'age',
-        'points',
-        'address'
+        'address',
+    ];
+    /**
+     * Default to 0 points when creating a new player.
+     *
+     * @var array<int, string>
+     */
+    protected $attributes = [
+        'points' => 0,
     ];
 
 

@@ -22,26 +22,32 @@ Route::get('/', function () {
  * API for getting all players data
  *
  */
-Route::get('/players', 'PlayerController@index');
+Route::get('/players', [PlayerController::class, 'index'])->name('index');
 
  /**
  * API for creating player 
  *
  */
 
-Route::post('/player', 'PlayerController@store');
+Route::post('/players', [PlayerController::class, 'create'])->name('create');
 
  /**
  * API for viewing a single player's data 
  *
  */
 
-Route::get('/players/{id}', 'PlayerController@view');
+Route::get('/players/{id}', [PlayerController::class, 'view'])->name('view');
 
  /**
  * API for viewing a single player's data 
  *
  */
- Route::delete('/players/{id}', 'PlayerController@delete');
+Route::delete('/players/{id}', [PlayerController::class, 'delete'])->name('delete');
+
+ /**
+ * API for viewing a single player's data 
+ *
+ */
+Route::put('/players/{id}/increment', [PlayerController::class, 'incrementPoints'])->name('incrementPoint');
 
 
