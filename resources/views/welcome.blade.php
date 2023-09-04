@@ -21,7 +21,7 @@
         </div>
         @viteReactRefresh
         @vite(['resources/js/app.jsx'])
-        <h1 class="container text-3xl font-bold" > test</h1>
+        
         
     </body>
 </html>

@@ -1,10 +1,14 @@
 import './bootstrap';
 
 import ReactDOM  from 'react-dom/client'
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
-import HelloReact from './component/helloreact';
-import CreatePlayer from './component/CreatePlayer';
+import Index from './component/index'
+import '../css/app.css'
+import React from 'react';
 
 ReactDOM.createRoot(document.getElementById('app')).render(
-    <HelloReact></HelloReact>
+
+    <React.StrictMode>
+        <Index></Index>
+    </React.StrictMode>
+    
 );

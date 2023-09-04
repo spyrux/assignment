@@ -17,7 +17,7 @@ class PlayerController extends Controller
     public function index(){
 
         try{
-            $players = Player::all();
+            $players = Player::orderBy('points','desc')->get();
 
             if($players->isEmpty()){
                 return response()->json([
@@ -98,7 +98,7 @@ class PlayerController extends Controller
             return response()->json([
                 'message' => 'Player points successfully incremented',
                 'player' => $player,
-            ], 201);
+            ], 200);
 
         }catch (ValidationException $e){
                 return response()->json([
@@ -131,7 +131,7 @@ class PlayerController extends Controller
             return response()->json([
                 'message' => 'Player successfully deleted',
                 'id' => $id,
-            ], 201);
+            ], 200);
 
         }catch (ModelNotFoundException $e){
 
