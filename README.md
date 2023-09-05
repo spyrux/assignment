@@ -40,10 +40,15 @@ Here is what it should look like:
 
 Documenation for APIs
 
-GET '/' returns the index with all players.<br></br>
-GET '/playersForm' returns a form for creating a player.<br></br>
-GET '/players/{id}' returns a form with the player with id.<br></br>
-POST '/api/players' sends form data to create a new player in database.<br></br>
-DELETE '/api/players/{id}' deletes a player with specified id.<br></br>
-PUT '/players/{id}/increment' updates specified player's points by +/-1.<br></br>
+GET '/' returns the index with all players.
+
+GET '/playersForm' returns a form for creating a player.
+
+GET '/players/{id}' returns a form with the player with id.
+
+POST '/api/players' sends form data to create a new player in database.
+
+DELETE '/api/players/{id}' deletes a player with specified id.
+
+PUT '/players/{id}/increment' updates specified player's points by +/-1.
 
