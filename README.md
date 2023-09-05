@@ -15,6 +15,29 @@ Here is what it should look like:
 <img width="690" alt="image" src="https://github.com/spyrux/assignment/assets/37138564/37e46d29-f1d7-464a-9cd2-d9ee04132af4">
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Documenation for APIs
 
 GET '/' returns the index with all players.
