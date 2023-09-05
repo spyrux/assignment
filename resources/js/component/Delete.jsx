@@ -1,9 +1,9 @@
 import React  from "react";
 import { API_BASE_URL } from "../config";
 import axios from "axios";
-import  Form  from "react-bootstrap/Form";
+
 import {BsXSquare} from 'react-icons/bs';
-import Button from "react-bootstrap/Button";
+
 
 
 export default function Delete(props) {
@@ -37,11 +37,11 @@ export default function Delete(props) {
 
 
     return (
-        <Form>
-            <Button onClick={handleSubmit}>
+        <form>
+            <button onClick={handleSubmit}>
                 <BsXSquare size={18}/>
-            </Button>
-        </Form>
+            </button>
+        </form>
     );
 
 }

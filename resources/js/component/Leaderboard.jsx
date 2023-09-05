@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import { Button} from "react-bootstrap";
 import { Reorder } from 'framer-motion';
 import { InertiaLink } from '@inertiajs/inertia-react';
 import Increment from './Increment';
@@ -165,10 +164,10 @@ export default function Leaderboard(props){
                     <thead className='p-1 text-center '>
                         <tr>
                             <th className='p-1 text-center border border-gray-400'>
-                            <Button className=' px-3'onClick={onNameOrder} >Name </Button></th>
+                            <button className=' px-3'onClick={onNameOrder} >Name </button></th>
                             <th className='p-1 text-center border border-gray-400 '>Points
-                            {isDescending? <Button className=' px-3' onClick={onPointOrderAsc}><BsArrowUpSquare/></Button> : 
-                            <Button className=' px-3'onClick={onPointOrderDes} ><BsArrowDownSquare/></Button>}
+                            {isDescending? <button className=' px-3' onClick={onPointOrderAsc}><BsArrowUpSquare/></button> : 
+                            <button className=' px-3'onClick={onPointOrderDes} ><BsArrowDownSquare/></button>}
                              </th>
                             
                         </tr>
