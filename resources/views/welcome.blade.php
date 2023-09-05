@@ -16,7 +16,7 @@
         </style>
     </head>
     <body>
-        <div class="container text-3xl font-bold" className=" text-3xl font-bold" id='app'>
+        <div className=" text-3xl font-bold bg-zinc-800 w-full h-full" id='app'>
 
         </div>
         @viteReactRefresh

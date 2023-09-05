@@ -173,28 +173,28 @@ export default function Leaderboard(){
 
     return (
 
-
-        <div className='fixed top-10 left-0 w-full  flex justify-center'>
+        
+        <div className='fixed left-0 w-full  flex justify-center bg-zinc-800 h-full'>
         {isLoading && <br></br>}
 
         {players && 
-        <div>
+        <div className='my-10'>
             <input
-                className=' left-9 p-2 w-60 mx-2 my-2 text-sm'
+                className=' left-9 p-2 w-60 mx-1 my-2 text-sm'
                 type="text"
                 placeholder="Type to filter"
                 value = {filterText}
                 onChange={e => handleFilterChange(e)}
             />
-            <article className= " w-[800px] text-sm font-medium text-white bg-gray-700 border-gray-500 rounded-lg">
+            <article className= " w-[800px] max-h-[500px] overflow-auto  text-sm font-medium text-white bg-gray-700 border-gray-500 rounded-lg">
             <h1 className='p-3 text-center  text-lg border border-gray-400 rounded-lg'>Leaderboard</h1>
             <Reorder.Group values={displayPlayers} onReorder={setDisplayPlayers} drag={false}>
-                <table className="min-w-full leading-normal">
+                <table className="min-w-full  leading-normal">
                     <thead className='p-1 text-center '>
                         <tr>
-                            <th className='p-1 text-center border-r border-gray-400'>
+                            <th className='p-1 text-center border border-gray-400'>
                             <Button className=' px-3'onClick={onNameOrder} >Name </Button></th>
-                            <th className='p-1 text-center '>Points
+                            <th className='p-1 text-center border border-gray-400 '>Points
                             {isDescending? <Button className=' px-3' onClick={onPointOrderAsc}><BsArrowUpSquare/></Button> : 
                             <Button className=' px-3'onClick={onPointOrderDes} ><BsArrowDownSquare/></Button>}
                              </th>
@@ -242,6 +242,7 @@ export default function Leaderboard(){
         </div>
         </div>}
     </div>
+    
 
     );
     

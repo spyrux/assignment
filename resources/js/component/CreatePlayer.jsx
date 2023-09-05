@@ -46,12 +46,13 @@ export default function CreatePlayer() {
 
 
     return (
-        <main className =" fixed top-40 w-full left-96 h-full items-center justify-center text-sm text-white">
-            <div className="relative">
-                <Link className="text-sm text-black absolute bottom-full" to={`/`}>Back</Link>
+        <div className="min-h-screen bg-zinc-800">
+        <main className =" fixed top-28 w-full left-96 h-full items-center justify-center text-sm text-white">
+            <div className="relative ">
+                <Link className="text-sm text-white absolute bottom-full py-2" to={`/`}>Back</Link>
             </div>
             <form
-                className="bg-gray-600 shadow-lg rounded-md p-5 md:p-10 flex flex-col w-11/12 max-w-lg"
+                className="bg-gray-700 shadow-lg rounded-md p-5 md:p-10 flex flex-col w-11/12 max-w-lg text-white font-medium"
                 onSubmit={handleSubmit}
             >
                 <label htmlFor="email" className="mb-5">
@@ -93,7 +94,7 @@ export default function CreatePlayer() {
                 <button type="submit" className="mt-5 bg-blue-500 py-3 rounded-md text-white">Submit</button>
             </form>
         </main>
-
+    </div>
 
     );
 
