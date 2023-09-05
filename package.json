@@ -16,10 +16,15 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@inertiajs/inertia": "^0.11.1",
+        "@inertiajs/inertia-react": "^0.8.1",
+        "@inertiajs/react": "^1.0.11",
         "@vitejs/plugin-react": "^4.0.4",
         "framer-motion": "^10.16.2",
         "react-bootstrap": "^2.8.0",
         "react-icons": "^4.10.1",
-        "react-router-dom": "^6.15.0"
+        "react-router-dom": "^6.15.0",
+        "ziggy": "^2.4.0",
+        "ziggy-js": "^1.6.2"
     }
 }

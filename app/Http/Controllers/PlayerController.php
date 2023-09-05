@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Player;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-
+use Inertia\Inertia;
 
 class PlayerController extends Controller
 {
@@ -16,28 +16,50 @@ class PlayerController extends Controller
  */
     public function index(){
 
+       
         try{
             $players = Player::orderBy('points','desc')->get();
 
-            if($players->isEmpty()){
-                return response()->json([
-                    'message' => 'No players were found',
-                ], 404);
-            }
 
-            return response()->json([
-                'message' => 'Players found',
-                'players' => $players,
-                ], 200);
+            return Inertia::render('Leaderboard', [
+             'players' => $players,
+            ]);
 
         }catch (Throwable $e){
-            return response()->json([
-                'message' => 'Failed to find players',
-                'errors' => $e,
-            ], 500);
+            return Inertia::render('Error',[
+                'error' => $e->getMessage(),
+            ])->withStatus(500);
         }
         
     }
+
+/**
+ * Function to view the information of a player by id.
+ * Tries to find the player and catches exceptions if there is an error.
+ */
+
+ public function view($id){
+
+    try{    
+        $player = Player::findOrFail($id);
+
+
+        return Inertia::render('ViewPlayer', [
+            'player' => $player,
+        ]);
+
+    }catch (ModelNotFoundException $e){
+        return Inertia::render('Error',[
+            'error' => $e->getMessage(),
+        ])->withStatus(404);
+
+    }catch (Throwable $e){
+        return Inertia::render('Error',[
+            'error' => $e->getMessage(),
+        ])->withStatus(500);
+    }
+}
+    
 
  /**
  * Function to create a player with name, age, and address.
@@ -152,35 +174,5 @@ class PlayerController extends Controller
         }
     }
 
- /**
- * Function to view the information of a player by id.
- * Tries to find the player and catches exceptions if there is an error.
- */
-
-    public function view($id){
-
-        try{    
-            $player = Player::findOrFail($id);
-    
-    
-            return response()->json([
-                'message' => 'Player successfully found',
-                'player' => $player,
-            ], 201);
-
-        }catch (ModelNotFoundException $e){
-            return response()->json([
-                'message' => 'Player was not found',
-                'id' => $id,
-                'errors' => $e,
-            ], 404);
-
-        }catch (Throwable $e){
-            return response()->json([
-                'message' => 'Player lookup unsucessful',
-                'id' => $id,
-                'errors' => $e,
-            ], 500);
-        }
-    }
+ 
 }

@@ -1,14 +1,11 @@
-import './bootstrap';
+import React from 'react'
+import {createRoot} from 'react-dom/client'
+import {createInertiaApp } from '@inertiajs/inertia-react'
+import {resolvePageComponent} from 'laravel-vite-plugin/inertia-helpers'
 
-import ReactDOM  from 'react-dom/client'
-import Index from './component/index'
-import '../css/app.css'
-import React from 'react';
-
-ReactDOM.createRoot(document.getElementById('app')).render(
-
-    <React.StrictMode>
-        <Index></Index>
-    </React.StrictMode>
-    
-);
+createInertiaApp({
+    resolve: (name) => resolvePageComponent(`./component/${name}.jsx`,import.meta.glob('./component/**/*.jsx')),
+    setup({ el, App, props }) {
+        createRoot(el).render(<App {...props} />)
+    },
+})

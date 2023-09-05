@@ -1,51 +1,24 @@
 import React, {useEffect, useState} from 'react';
-import { API_BASE_URL } from '../config';
 import { Button} from "react-bootstrap";
-import axios from "axios";
 import { Reorder } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { InertiaLink } from '@inertiajs/inertia-react';
 import Increment from './Increment';
 import Decrement from './Decrement';
 import {BsArrowUpSquare, BsArrowDownSquare} from 'react-icons/bs';
 import Delete from './Delete';
 
-export default function Leaderboard(){
 
-    const[players, setPlayers] = useState(null);
-    const[isLoading, setIsLoading] = useState(null);
+export default function Leaderboard(props){
+
+
+    const[players, setPlayers] = useState(props.players);
     const[isDescending, setIsDescending] = useState(true);
     const[isAlphabetical, setIsAlphabetical] = useState(null)
     const [filterText, setFilterText] = useState('');
-
     
-    const [displayPlayers, setDisplayPlayers] = useState(null);
+    
+    const [displayPlayers, setDisplayPlayers] = useState(props.players);
 
-    useEffect(() => {
-        
-        async function fetchData() {
-            if(!players) {
-            try { 
-                setIsLoading(true);
-                const response = await axios.get(API_BASE_URL+'/players');
-                const data = response.data;
-                console.log(response);
-                const players = data.players;
-                setPlayers(data.players);
-                setDisplayPlayers(players);
-                setIsLoading(false);
-
-            } catch (error) {
-                setIsLoading(false);
-                console.error('Error:', error);
-            }
-            
-
-        }
-    }
-
-    fetchData();
-
-    },[]);
 
     const handleFilterChange = (e) => {
         const newText = e.target.value; 
@@ -174,27 +147,26 @@ export default function Leaderboard(){
     return (
 
 
-        <div className='fixed top-10 left-0 w-full  flex justify-center'>
-        {isLoading && <br></br>}
+        <div className='fixed left-0 w-full h-full flex justify-center bg-zinc-700'>
 
         {players && 
-        <div>
+        <div className='relative top-10'>
             <input
-                className=' left-9 p-2 w-60 mx-2 my-2 text-sm'
+                className=' left-9 p-2 w-60 mx-1 my-2 text-sm rounded-sm'
                 type="text"
                 placeholder="Type to filter"
                 value = {filterText}
                 onChange={e => handleFilterChange(e)}
             />
-            <article className= " w-[800px] text-sm font-medium text-white bg-gray-700 border-gray-500 rounded-lg">
-            <h1 className='p-3 text-center  text-lg border border-gray-400 rounded-lg'>Leaderboard</h1>
+            <article className= " overflow-auto h-[500px] w-[800px] text-sm font-medium text-white bg-gray-700 border-gray-500 rounded-lg">
+            <h1 className='p-3 text-center  text-lg border-t border-r border-l border-gray-400 rounded-t'>Leaderboard</h1>
             <Reorder.Group values={displayPlayers} onReorder={setDisplayPlayers} drag={false}>
                 <table className="min-w-full leading-normal">
                     <thead className='p-1 text-center '>
                         <tr>
-                            <th className='p-1 text-center border-r border-gray-400'>
+                            <th className='p-1 text-center border border-gray-400'>
                             <Button className=' px-3'onClick={onNameOrder} >Name </Button></th>
-                            <th className='p-1 text-center '>Points
+                            <th className='p-1 text-center border border-gray-400 '>Points
                             {isDescending? <Button className=' px-3' onClick={onPointOrderAsc}><BsArrowUpSquare/></Button> : 
                             <Button className=' px-3'onClick={onPointOrderDes} ><BsArrowDownSquare/></Button>}
                              </th>
@@ -208,14 +180,15 @@ export default function Leaderboard(){
                                 <td className="p-4 text-left border font-normal border-gray-400">
                                     <div className='flex'>
                                         <Delete className="pl-5" onDeleteButton = {onDelete} playerId = {player.id}/>
-                                        <Link className ="pl-5"to={`/players/${player.id}`}>{player.name}</Link>
-
+                                        
+                                        <InertiaLink href={route('player.view', { id: player.id })} className ="pl-5">{player.name}</InertiaLink>
+                                        
                                     </div>
                                 </td>
                                 <td className="p-2 text-center border border-gray-400">
                                     <div >
                                         <Increment onIncrement ={onUpdate} playerId ={player.id}/>
-                                        <p className='pb-2'>{player.points}</p>
+                                        <p className='pb-1.5'>{player.points}</p>
                                         <Decrement onDecrement ={onUpdate} playerId ={player.id}/>
                                     </div>
                                 </td>
@@ -235,10 +208,10 @@ export default function Leaderboard(){
 
         </article>
         <div className='relative top-2'>
-            <Link to ={'/players/create'}>
-                <Button className='absolute top-full right-2 py-2 text-sm border rounded-lg bg-lime-500 w-32'>Create Player
-                </Button>
-            </Link>
+            <InertiaLink href={route('player.create')} className='absolute top-full right-2 text-center py-2 text-sm border rounded-lg bg-white w-32'
+            type='button'>
+                Create Player
+            </InertiaLink>
         </div>
         </div>}
     </div>
